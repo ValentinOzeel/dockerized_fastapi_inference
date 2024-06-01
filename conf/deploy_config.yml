@@ -1,0 +1,24 @@
+DEVICE: 0
+MODEL_OPTION: state_dict #model, state_dict, onnx
+TO_LOAD_PATH: project_root/model/best_model_state_checkpoint.pt.gz  # Full path or project_root|model.pt
+COMPRESSED: True
+
+IMG_FORMATS:
+  - jpg
+  - png
+  
+#DATASET: CustomDfImageFolder
+
+DATA_TRANSFORM_AND_AUGMENTATION:
+  inference:
+    Resize: 
+        size: [256, 256]
+    ToTensor: {}
+    Normalize: 
+      mean: 0.2015
+      std: 0.1914
+    
+DATA_LOADER:
+  batch_size: 16
+  num_workers: 2
+  pin_memory: True
